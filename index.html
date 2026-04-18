@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>医疗数据分析仪表盘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-mark">+</span>
+      <span class="logo-text">MedAnalyzer</span>
+    </div>
+    <div class="header-sub">医疗数据自动分析系统 · Digital Health Lab</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Upload Section -->
+  <section class="upload-section" id="uploadSection">
+    <div class="upload-zone" id="dropZone">
+      <input type="file" id="fileIn" accept=".csv" multiple />
+      <div class="upload-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="14" width="32" height="26" rx="3" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M18 8h12M24 8v18M18 20l6-6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="upload-title">拖入 CSV 文件 / 点击选择</p>
+      <p class="upload-hint">支持同时分析多个文件 · 适配基础体测、睡眠、疼痛等9类医疗数据</p>
+      <div class="upload-tags">
+        <span>基础体测</span><span>日常活动</span><span>运动</span><span>用药</span>
+        <span>满意度</span><span>治疗记录</span><span>生命体征</span><span>睡眠质量</span><span>疼痛评估</span>
+      </div>
+    </div>
+    <div class="file-list" id="fileList"></div>
+    <button class="btn-primary" id="runBtn" disabled>
+      <span>开始分析</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </section>
+
+  <!-- Results -->
+  <section class="results-section" id="resultsSection" style="display:none">
+    <div class="results-header">
+      <h2>分析结果</h2>
+      <button class="btn-ghost" onclick="resetAll()">← 重新上传</button>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="summary-cards" id="summaryCards"></div>
+
+    <!-- File tabs -->
+    <div class="file-tabs" id="fileTabs"></div>
+
+    <!-- Tab content -->
+    <div class="tab-content" id="tabContent"></div>
+  </section>
+
+</main>
+
+<footer>
+  <span>MedAnalyzer · 3주차 Python과 Colab 기초 · Digital Health</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
